@@ -26,3 +26,10 @@ Documentation
 -------------
 
 Currently, the documentation is hosted at https://peri-source.github.io/peri-docs/
+
+Python3 porting
+--------------
+
+[weave](https://github.com/scipy/weave) is python2 only. 
+The syntax has been changed using `2to3` tool.
+
