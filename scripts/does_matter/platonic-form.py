@@ -38,10 +38,10 @@ def dorun(method, platonics=None, nsnrs=20, noise_samples=30, sweeps=30, burn=15
     crbs, vals, errs, poss = [], [], [], []
 
     for sigma in sigmas:
-        print "#### sigma:", sigma
+        print("#### sigma:", sigma)
 
         for i, (image, pos) in enumerate(platonics):
-            print 'image', i, '|', 
+            print('image', i, '|', end=' ') 
             s,im = create_comparison_state(image, pos, method=method)
 
             # typical image
@@ -69,7 +69,7 @@ def doplot(prefix='/media/scratch/peri/bad/platonic-form',
         forms=['ev-exact-gaussian', 'ev-constrained-cubic', 'ev-lerp', 'ev-logistic'],
         labels=['EG', 'CC', 'LP', 'LG']):
 
-    print "Generating a image comparison"
+    print("Generating a image comparison")
     images = pickle.load(open(images))
     im,pos = images[0]
     s,im = create_comparison_state(im, pos)
@@ -84,7 +84,7 @@ def doplot(prefix='/media/scratch/peri/bad/platonic-form',
     diff = (im - s.get_model_image()[s.inner])
     image0, image1 = im[nn], diff[nn]
 
-    print "Plotting"
+    print("Plotting")
     xs, crbs, errors = [], [], []
     for i, form in enumerate(forms):
         fn = prefix+'-'+form+'.pkl'

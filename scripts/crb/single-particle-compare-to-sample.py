@@ -18,7 +18,7 @@ rads = np.logspace(0, 1, 50)
 rads2 = np.logspace(0, 1, 10)
 
 for rad in rads:
-    print "Radius", rad
+    print("Radius", rad)
 
     # create a single particle state and get pos/rad blocks
     s = init.create_single_particle_state(imsize=64, radius=rad, sigma=0.05)
@@ -30,19 +30,19 @@ for rad in rads:
     crbs.append(crb)
 
 for rad in rads2:
-    print "Radius", rad
+    print("Radius", rad)
 
     # create a single particle state and get pos/rad blocks
     s = init.create_single_particle_state(imsize=64, radius=rad, sigma=0.05)
     blocks = s.blocks_particle(0)
 
     hist = []
-    for i in xrange(samples):
-        print "radius", rad, "sample", i
+    for i in range(samples):
+        print("radius", rad, "sample", i)
         s.model_to_true_image()
 
         thist = []
-        for j in xrange(sweeps):
+        for j in range(sweeps):
             thist.append(runner.sample_particles(s, stepout=0.1))
         hist.append(thist)
     hist = np.array(hist)

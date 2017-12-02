@@ -103,8 +103,8 @@ def table():
 
     results = OrderedDict()
 
-    for i in xrange(len(lpoly)):
-        print dnames[i], lnames[i], pnames[i]
+    for i in range(len(lpoly)):
+        print(dnames[i], lnames[i], pnames[i])
         poly = lpoly[i]
         ilm = lilms[i]
         psf = lpsfs[i]
@@ -136,7 +136,7 @@ def scores(results):
     tmp = copy.copy(results)
 
     scores = []
-    for k,v in tmp.iteritems():
+    for k,v in tmp.items():
         ind = analyze.nearest(v[5], v[4])
         scores.append((
             v[0], v[1], v[2], v[3],

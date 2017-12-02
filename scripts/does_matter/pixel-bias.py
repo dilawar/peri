@@ -7,8 +7,8 @@ def get_crb():
     s = init.create_many_particle_state(64, 64, conf=init.conf_cohen_hot)
 
     xs, ys = [], []
-    for i in xrange(1000):
-        print i
+    for i in range(1000):
+        print(i)
         x,y = _get_crb(s, np.random.rand(2))
         xs.extend(x)
         ys.extend(y)

@@ -19,12 +19,12 @@ deltas = np.logspace(-3, 0, 10)
 deltas2 = np.logspace(-3, 0, 5)
 
 for delta in deltas:
-    print "Delta", delta
+    print("Delta", delta)
 
     # create a single particle state and get pos/rad blocks
     s = init.create_two_particle_state(imsize=64, radius=radius, delta=delta,
             sigma=sigma, psfargs=(3,6), stateargs={"doprior": False})
-    print s.obj.pos
+    print(s.obj.pos)
     blocks = s.blocks_particle(0)
 
     crb = []
@@ -33,19 +33,19 @@ for delta in deltas:
     crbs.append(crb)
 
 for delta in deltas2:
-    print "Delta", delta
+    print("Delta", delta)
 
     # create a single particle state and get pos/rad blocks
     s = init.create_two_particle_state(imsize=64, radius=radius, delta=delta,
             sigma=sigma, stateargs={"doprior": True})
 
     hist = []
-    for i in xrange(samples):
-        print "delta", delta, "sample", i
+    for i in range(samples):
+        print("delta", delta, "sample", i)
         s.model_to_true_image()
 
         thist = []
-        for j in xrange(sweeps):
+        for j in range(sweeps):
             thist.append(runner.sample_particles(s, stepout=0.1))
         hist.append(thist)
     hist = np.array(hist)

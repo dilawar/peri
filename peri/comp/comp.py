@@ -4,6 +4,7 @@ from operator import add
 from collections import OrderedDict, defaultdict
 
 from peri import util
+from functools import reduce
 
 class NotAParameterError(Exception):
     pass
@@ -108,12 +109,12 @@ class ParameterGroup(object):
     @property
     def params(self):
         """ The list of parameters """
-        return self.param_dict.keys()
+        return list(self.param_dict.keys())
 
     @property
     def values(self):
         """ The list of values """
-        return self.param_dict.values()
+        return list(self.param_dict.values())
 
     def nopickle(self):
         """
@@ -472,7 +473,7 @@ class ComponentCollection(Component):
         for c in self.comps:
             for p,v in zip(c.params, c.values):
                 pv[p] = v
-        return pv.keys()
+        return list(pv.keys())
 
     @property
     def values(self):
@@ -480,7 +481,7 @@ class ComponentCollection(Component):
         for c in self.comps:
             for p,v in zip(c.params, c.values):
                 pv[p] = v
-        return pv.values()
+        return list(pv.values())
 
     def get_update_tile(self, params, values):
         sizes = []
@@ -533,13 +534,13 @@ class ComponentCollection(Component):
         """ Ensure that shared parameters are the same value everywhere """
         def _normalize(comps, param):
             vals = [c.get_values(param) for c in comps]
-            diff = any([vals[i] != vals[i+1] for i in xrange(len(vals)-1)])
+            diff = any([vals[i] != vals[i+1] for i in range(len(vals)-1)])
 
             if diff:
                 for c in comps:
                     c.set_values(param, vals[0])
 
-        for param, comps in self.lmap.iteritems():
+        for param, comps in self.lmap.items():
             if isinstance(comps, list) and len(comps) > 1:
                 _normalize(comps, param)
 
@@ -571,7 +572,7 @@ class ComponentCollection(Component):
             # add everything from exports
             funcs = c.exports()
             for func in funcs:
-                newname = c.category + '_' + func.im_func.func_name
+                newname = c.category + '_' + func.__func__.__name__
                 setattr(self, newname, func)
                 self._nopickle.append(newname)
 

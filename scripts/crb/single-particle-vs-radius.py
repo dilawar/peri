@@ -12,7 +12,7 @@ s = init.create_single_particle_state(imsize=64, radius=1, sigma=0.05)
 blocks = s.blocks_particle(0)
 
 for rad in rads:
-    print "Radius", rad
+    print("Radius", rad)
     s.update(blocks[-1], np.array([rad]))
 
     crb = []

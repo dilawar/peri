@@ -26,8 +26,8 @@ def crb(state):
 def sample(state, im, noise, N=10, burn=10, sweeps=20):
     values, errors = [], []
 
-    for i in xrange(N):
-        print i, ' ',
+    for i in range(N):
+        print(i, ' ', end=' ')
         set_image(state, im, noise)
         h,l = runner.do_samples(state, sweeps, burn, quiet=True)
 
@@ -35,7 +35,7 @@ def sample(state, im, noise, N=10, burn=10, sweeps=20):
         values.append(h.mean(axis=0))
         errors.append(h.std(axis=0))
 
-    print ''
+    print('')
     return np.array(values), np.array(errors)
 
 def set_image(state, cg, sigma):
@@ -62,7 +62,7 @@ def perfect_platonic_global(N, R, scale=11, pos=None):
 
     vol_true = 4./3*np.pi*R**3
     vol_real = image.sum() / float(scale**3)
-    print vol_true, vol_real, (vol_true - vol_real)
+    print(vol_true, vol_real, (vol_true - vol_real))
     return image
 
 def perfect_platonic_per_pixel(N, R, scale=11, pos=None, zscale=1.0, returnpix=None):
@@ -94,7 +94,7 @@ def perfect_platonic_per_pixel(N, R, scale=11, pos=None, zscale=1.0, returnpix=N
 
     # make the output arrays
     image = np.zeros((N,)*3)
-    x,y,z = np.meshgrid(*(xrange(N),)*3, indexing='ij')
+    x,y,z = np.meshgrid(*(range(N),)*3, indexing='ij')
 
     # for each real pixel in the image, integrate a bunch of superres pixels
     for x0,y0,z0 in zip(x.flatten(),y.flatten(),z.flatten()):
@@ -141,11 +141,11 @@ def create_many_platonics(radius=5.0, scale=101, N=50):
     size = int(4*radius)
 
     platonics = []
-    for i in xrange(N):
+    for i in range(N):
         goal = np.array([(size-1.0)/2]*3) + 2*np.random.rand(3)-1
         im, pos = perfect_platonic_per_pixel(N=size, R=radius, scale=scale, pos=goal)
 
-        print i, goal, '=>', pos
+        print(i, goal, '=>', pos)
         platonics.append((im, pos))
         pickle.dump(platonics, open('/tmp/platonics.pkl', 'w'))
     return platonics
@@ -177,7 +177,7 @@ def doplot(image0, image1, xs, crbs, errors, labels, diff_image_scale=0.1,
     labels : legend labels for each curve
     """
     if len(crbs) != len(errors) or len(crbs) != len(labels):
-        raise IndexError, "lengths are not consistent"
+        raise IndexError("lengths are not consistent")
 
     fig = pl.figure(figsize=(14,7))
 
@@ -195,7 +195,7 @@ def doplot(image0, image1, xs, crbs, errors, labels, diff_image_scale=0.1,
     cb1.ax.set_yticklabels(['-%0.1f' % diffm, '%0.1f' % diffm])
     image_names = ["Reference", "Difference"]
 
-    for i in xrange(2):
+    for i in range(2):
         gs[i].set_xticks([])
         gs[i].set_yticks([])
         gs[i].set_ylabel(image_names[i])
@@ -204,7 +204,7 @@ def doplot(image0, image1, xs, crbs, errors, labels, diff_image_scale=0.1,
             lbl(gs[i], figlbl[i])
 
     symbols = ['o', '^', 'D', '>']
-    for i in xrange(len(labels)):
+    for i in range(len(labels)):
         c = COLORS[i]
 
         if multiple_crbs or i == 0:

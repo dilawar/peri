@@ -62,7 +62,7 @@ def dorun(SNR=20, sweeps=20, burn=8, noise_samples=10):
     crbs, vals, errs = [], [], []
 
     for radius in radii:
-        print 'radius', radius
+        print('radius', radius)
         s,im = pxint(radius=radius, factor=4)
         goodstate = s.state.copy()
 

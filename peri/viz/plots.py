@@ -229,9 +229,9 @@ def scan(im, cycles=1, sleep=0.3, vmin=0, vmax=1, cmap='bone'):
     pl.figure(1)
     pl.show()
     time.sleep(3)
-    for c in xrange(cycles):
+    for c in range(cycles):
         for i, sl in enumerate(im):
-            print i
+            print(i)
             pl.clf()
             pl.imshow(sl, cmap=cmap, interpolation='nearest',
                     origin='lower', vmin=vmin, vmax=vmax)
@@ -243,8 +243,8 @@ def scan_together(im, p, delay=2, vmin=0, vmax=1, cmap='bone'):
     pl.show()
     time.sleep(3)
     z,y,x = p.T
-    for i in xrange(len(im)):
-        print i
+    for i in range(len(im)):
+        print(i)
         sl = im[i]
         pl.clf()
         pl.imshow(sl, cmap=cmap, interpolation='nearest', origin='lower',
@@ -263,7 +263,7 @@ def sample_compare(N, samples, truestate, burn=0):
     mu = h.mean(axis=0)
     std = h.std(axis=0)
     pl.figure(figsize=(20,4))
-    pl.errorbar(xrange(len(mu)), (mu-strue), yerr=5*std/np.sqrt(h.shape[0]),
+    pl.errorbar(range(len(mu)), (mu-strue), yerr=5*std/np.sqrt(h.shape[0]),
             fmt='.', lw=0.15, alpha=0.5)
     pl.vlines([0,3*N-0.5, 4*N-0.5], -1, 1, linestyle='dashed', lw=4, alpha=0.5)
     pl.hlines(0, 0, len(mu), linestyle='dashed', lw=5, alpha=0.5)
@@ -541,7 +541,7 @@ def compare_data_model_residuals(s, tile, data_vmin='calc', data_vmax='calc',
     dt = data_cmap(center_data(data, data_vmin, data_vmax))
     rs = res_cmap(center_data(residuals, res_vmin, res_vmax))
 
-    for a in xrange(4):
+    for a in range(4):
         im[:,:,a][upper_mask] = rs[:,:,a][upper_mask]
         im[:,:,a][center_mask] = gm[:,:,a][center_mask]
         im[:,:,a][lower_mask] = dt[:,:,a][lower_mask]
@@ -623,7 +623,7 @@ def diag_crb_particles(state):
     crbrad = []
 
     for i in np.arange(state.N)[state.state[state.b_typ]==1.]:
-        print i
+        print(i)
         bl = state.blocks_particle(i)
         for b in bl[:-1]:
             crbpos.append(np.sqrt(1.0/state.fisher_information(blocks=[b])))
@@ -680,7 +680,7 @@ def crb_compare(state0, samples0, state1, samples1, crb0=None, crb1=None,
     drad = rad0 - rad1[link]
 
     drift = dpos.mean(axis=0)
-    print 'drift', drift
+    print('drift', drift)
 
     dpos -= drift
 
@@ -958,7 +958,7 @@ def twoslice(field, center=None, size=6.0, cmap='bone_r', vmin=0, vmax=1,
 
     if orientation.startswith('v'):
         # rect = l,b,w,h
-        print x, y, z, w, h, x/h
+        print(x, y, z, w, h, x/h)
         r = x/h
         q = y/h
         f = 1 / (1 + 3*off)

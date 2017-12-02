@@ -1,4 +1,4 @@
-from __future__ import print_function
+
 
 import peri.util
 import peri.models
@@ -111,7 +111,7 @@ class PlatonicDiscs(peri.comp.comp.Component):
 
         # add up the images of many particles to get the platonic image
         self.image = np.array([
-            self.draw_disc(rvec, i) for i in xrange(self.N)
+            self.draw_disc(rvec, i) for i in range(self.N)
         ]).sum(axis=0)
 
         # return the image in the current tile

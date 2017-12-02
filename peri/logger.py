@@ -24,7 +24,7 @@ critical errors. The order is debug, info, warn, error, fatal
 
     log.set_level('info')
 """
-import StringIO
+import io
 import logging
 import logging.handlers
 from contextlib import contextmanager
@@ -61,7 +61,7 @@ class Logger(object):
 
     def get_handlers(self, names=None):
         if names is None:
-            names = self.handlers.keys()
+            names = list(self.handlers.keys())
         names = listify(names)
         return [self.get_handler(name) for name in names]
 
@@ -93,7 +93,7 @@ class Logger(object):
 
         # make sure the the log file has a name
         if name == 'stringio' and 'stringio' not in kwargs:
-            kwargs.update({'stringio': StringIO.StringIO()})
+            kwargs.update({'stringio': io.StringIO()})
 
         handler = types[name](**kwargs)
         self.add_handler_raw(handler, name, level=level, formatter=formatter)
@@ -127,7 +127,7 @@ class Logger(object):
         except Exception as e:
             raise
         finally:
-            for k,v in formats.iteritems():
+            for k,v in formats.items():
                 k.formatter = v
 
     def set_verbosity(self, verbosity='vvv', handlers=None):

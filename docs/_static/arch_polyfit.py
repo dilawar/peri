@@ -12,7 +12,7 @@ class PolyFitState(peri.states.State):
         self._data = y
         self._xpts = x
 
-        params = ['c-%i' %i for i in xrange(order)]
+        params = ['c-%i' %i for i in range(order)]
         values = coeffs if coeffs is not None else [0.0]*order
 
         super(PolyFitState, self).__init__(

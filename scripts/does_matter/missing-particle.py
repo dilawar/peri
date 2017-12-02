@@ -41,14 +41,14 @@ def dorun(SNR=20, separations=20, noise_samples=12, sweeps=30, burn=15):
 
     np.random.seed(10)
     for i,t in enumerate(seps):
-        print 'sep', i, t, '|', 
+        print('sep', i, t, '|', end=' ') 
 
         s,pos = missing_particle(separation=t, SNR=SNR)
         crbs.append(crb(s))
         poss.append(pos)
 
-        for j in xrange(noise_samples):
-            print j,
+        for j in range(noise_samples):
+            print(j, end=' ')
             sys.stdout.flush()
 
             s,pos = missing_particle(separation=t, SNR=SNR)
@@ -56,7 +56,7 @@ def dorun(SNR=20, separations=20, noise_samples=12, sweeps=30, burn=15):
             vals.append(val)
             errs.append(err)
 
-        print ''
+        print('')
     shape0 = (separations,  -1)
     shape1 = (separations, noise_samples, -1)
 
@@ -99,7 +99,7 @@ def doplot(prefix='/media/scratch/peri/does_matter/missing-particle', snrs=[20,5
     cb0.ax.set_yticklabels(['0', '1'])
     cb1.ax.set_yticklabels(['-%0.1f' % diffm, '%0.1f' % diffm])
 
-    for i in xrange(2):
+    for i in range(2):
         gs[i].set_xticks([])
         gs[i].set_yticks([])
         gs[i].set_ylabel(labels[i])

@@ -23,7 +23,7 @@ def diffusion(diffusion_constant=0.2, exposure_time=0.05, samples=200):
     finalimage = 0*s0.get_model_image()[s0.inner]
     position = 0*s0.obj.pos[0]
 
-    for i in xrange(samples):
+    for i in range(samples):
         offset = np.sqrt(6*diffusion_constant*exposure_time)*np.random.randn(3)
         s0.obj.pos[0] = np.array(s0.image.shape)/2 + offset
         s0.reset()
@@ -86,7 +86,7 @@ def diffusion_correlated(diffusion_constant=0.2, exposure_time=0.05,
     finalimage = 0*s0.get_model_image()[s0.inner]
     position = 0*s0.obj.pos
 
-    for i in xrange(samples):
+    for i in range(samples):
         sim.step(1, mask=mask)
         s0.obj.pos = sim.pos.copy() + s0.pad
         s0.reset()
@@ -120,10 +120,10 @@ def dorun(SNR=20, ntimes=20, samples=10, noise_samples=10, sweeps=20, burn=10,
     crbs, vals, errs, poss = [], [], [], []
 
     for i,t in enumerate(times):
-        print '###### time', i, t
+        print('###### time', i, t)
 
-        for j in xrange(samples):
-            print 'image', j, '|', 
+        for j in range(samples):
+            print('image', j, '|', end=' ') 
             if not correlated:
                 s,im,pos = diffusion(diffusion_constant=0.2, exposure_time=t)
             else:
@@ -170,7 +170,7 @@ def doplot(prefix='/media/scratch/peri/does_matter/brownian-motion', snrs=[20,50
     cb0.ax.set_yticklabels(['0', '1'])
     cb1.ax.set_yticklabels(['-%0.1f' % diffm, '%0.1f' % diffm])
 
-    for i in xrange(2):
+    for i in range(2):
         gs[i].set_xticks([])
         gs[i].set_yticks([])
         gs[i].set_ylabel(labels[i])

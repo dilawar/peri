@@ -67,8 +67,8 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'PERI'
-copyright = u'2016, Matt Bierbaum, Brian Leahy'
+project = 'PERI'
+copyright = '2016, Matt Bierbaum, Brian Leahy'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -230,8 +230,8 @@ latex_elements = {
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'PERI.tex', u'PERI Documentation',
-   u'Matt Bierbaum, Brian Leahy', 'manual'),
+  ('index', 'PERI.tex', 'PERI Documentation',
+   'Matt Bierbaum, Brian Leahy', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -260,8 +260,8 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'peri', u'PERI Documentation',
-     [u'Matt Bierbaum, Brian Leahy'], 1)
+    ('index', 'peri', 'PERI Documentation',
+     ['Matt Bierbaum, Brian Leahy'], 1)
 ]
 
 # If true, show URL addresses after external links.
@@ -274,8 +274,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  ('index', 'PERI', u'PERI Documentation',
-   u'Matt Bierbaum, Brian Leahy', 'PERI', 'Parameter Extraction from Reconstruction of Images',
+  ('index', 'PERI', 'PERI Documentation',
+   'Matt Bierbaum, Brian Leahy', 'PERI', 'Parameter Extraction from Reconstruction of Images',
    'Miscellaneous'),
 ]
 
@@ -305,7 +305,7 @@ def setup(app):
 #####################################################
 # add LaTeX macros 
 # Additional stuff for the LaTeX preamble.
-latex_elements['preamble'] = '\usepackage{amsmath}\n\usepackage{amssymb}\n'
+latex_elements['preamble'] = '\\usepackage{amsmath}\n\\usepackage{amssymb}\n'
 f = file('latex_macros.sty')
 
 try:

@@ -73,7 +73,7 @@ def create_state(image, pos, rad, slab=None, sigma=0.05, conf=conf_simple):
 
     # setup the components based on the configuration
     components = []
-    for k,v in conf.get('comps', {}).iteritems():
+    for k,v in conf.get('comps', {}).items():
         args = conf.get('args').get(k, {})
         comp = model.registry[k][v](**args)
         components.append(comp)

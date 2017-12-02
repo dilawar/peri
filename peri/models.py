@@ -72,7 +72,7 @@ class Model(object):
         self.modelstr = modelstr
         self.varmap = varmap
         self.registry = registry
-        self.ivarmap = {v:k for k, v in self.varmap.iteritems()}
+        self.ivarmap = {v:k for k, v in self.varmap.items()}
         self.check_consistency()
 
     def check_consistency(self):
@@ -92,7 +92,7 @@ class Model(object):
             )
 
         # Check that the two model descriptors are consistent
-        for name, eq in self.modelstr.iteritems():
+        for name, eq in self.modelstr.items():
             var = regex.findall(eq)
             for v in var:
                 # remove the derivative signs if there (dP -> P)
@@ -116,7 +116,7 @@ class Model(object):
         compcats = [c.category for c in comps]
 
         # Check that the components are all provided, given the categories
-        for k, v in self.varmap.iteritems():
+        for k, v in self.varmap.items():
             if k not in self.modelstr['full']:
                 log.warn('Component (%s : %s) not used in model.' % (k,v))
 
@@ -205,7 +205,7 @@ class Model(object):
         if diffmap is None:
             return eval(self.get_base_model(), evar)
         else:
-            compname = diffmap.keys()[0]
+            compname = list(diffmap.keys())[0]
             return eval(self.get_difference_model(compname), evar)
 
     def __str__(self):

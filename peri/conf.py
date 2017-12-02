@@ -54,7 +54,7 @@ def transform(v):
 def read_environment():
     """ Read all environment variables to see if they contain PERI """
     out = {}
-    for k,v in os.environ.iteritems():
+    for k,v in os.environ.items():
         if transform(k) in default_conf:
             out[transform(k)] = v
     return out

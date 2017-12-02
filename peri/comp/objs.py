@@ -198,7 +198,7 @@ class PlatonicParticlesCollection(Component):
 
     def param_positions(self):
         """ Return params of all positions """
-        return self.param_particle_pos(range(self.N))
+        return self.param_particle_pos(list(range(self.N)))
 
     def param_particle_pos(self, ind):
         """ Get position of one or more particles """
@@ -412,7 +412,7 @@ def exact_volume_sphere(rvec, pos, radius, zscale=1.0, volume_error=1e-5,
 
     dr = inner(rvec, pos, rprime, zscale=zscale)
     t = function(dr, rprime, *args)
-    for i in xrange(MAX_VOLUME_ITERATIONS):
+    for i in range(MAX_VOLUME_ITERATIONS):
         vol_curr = np.abs(t.sum())
         if np.abs(vol_goal - vol_curr)/vol_goal < volume_error:
             break
@@ -637,7 +637,7 @@ class PlatonicSpheresCollection(PlatonicParticlesCollection):
 
     def param_radii(self):
         """ Return params of all radii """
-        return [self._i2p(i, 'a') for i in xrange(self.N)]
+        return [self._i2p(i, 'a') for i in range(self.N)]
 
     def param_particle(self, ind):
         """ Get position and radius of one or more particles """

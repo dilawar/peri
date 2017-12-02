@@ -12,7 +12,7 @@ positions = np.linspace(s.pad-1.5*radius, s.pad+2*radius, 50)
 blocks = s.blocks_particle(0)
 
 for pos in positions:
-    print "Position", pos
+    print("Position", pos)
     s.update(blocks[2], np.array([pos]))
 
     crb = []

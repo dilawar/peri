@@ -50,7 +50,7 @@ def optimize(s):
     lm0 = opt.LMGlobals(s, blocks, **args)
     lm1 = opt.LMParticles(s, particles=np.arange(s.N), **args)
 
-    for i in xrange(5):
+    for i in range(5):
         lm0.do_run_2()
         lm0.reset(3e-2)
 
@@ -71,7 +71,7 @@ def table(s, datas, names, vary_func):
     states.save(s, filename=filename)
 
     for i, (name, data) in enumerate(zip(names, datas)):
-        print i, name, data
+        print(i, name, data)
         state = states.load(filename)
 
         vary_func(state, data)
@@ -264,7 +264,7 @@ def make_all_plots(results, categories=['Platonic', 'Illumination', 'PSF']):
     )
 
     for i, (label, result, cat) in enumerate(zip('ABCDE', results, categories)):
-        make_plots(result, [img[i*cols + j] for j in xrange(cols)], label=None, sidelabel=cat)
+        make_plots(result, [img[i*cols + j] for j in range(cols)], label=None, sidelabel=cat)
 
 def make_plots(results, img=None, label='', sidelabel=''):
     ln = len(results)
@@ -318,7 +318,7 @@ def average_error(state):
     pos, rad = [], []
     for i, particle in enumerate(particles):
         p, r = error_level(state, particle)
-        print i, particle, p, r
+        print(i, particle, p, r)
         pos.append(p)
         rad.append(r)
     pos, rad = np.array(pos), np.array(rad)

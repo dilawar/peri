@@ -19,8 +19,8 @@ def fit_edge(separation, radius=5.0, samples=100, imsize=64, sigma=0.05, axis='z
     crbs = []
 
     for sep in separation:
-        print '='*79
-        print 'sep =', sep,
+        print('='*79)
+        print('sep =', sep, end=' ')
 
         s = init.create_two_particle_state(imsize, radius=radius, delta=sep, sigma=0.05,
                 axis='z', psfargs={'params': (2.0,1.0,4.0), 'error': 1e-8},
@@ -51,15 +51,15 @@ def fit_edge(separation, radius=5.0, samples=100, imsize=64, sigma=0.05, axis='z
         # save where the particles were originally so we can jiggle
         p = s.state[s.b_pos].reshape(-1,3).copy()
 
-        print p[0], p[1]
+        print(p[0], p[1])
         # calculate the CRB for this configuration
         bl = s.explode(s.b_pos)
         crbs.append(np.sqrt(np.diag(np.linalg.inv(s.fisher_information(blocks=bl)))).reshape(-1,3))
 
         # calculate the featuring errors
         tmp_tp, tmp_bf = [],[]
-        for i in xrange(samples):
-            print i
+        for i in range(samples):
+            print(i)
             bench.jiggle_particles(s, pos=p, sig=0.3, mask=np.array([1,1,1]))
             t = bench.trackpy(s)
             b = bench.bamfpy_positions(s, sweeps=15)
@@ -77,14 +77,14 @@ def plot_errors(seps, crb, errors, labels=['trackpy', 'peri']):
     markers = MARKERS
     colors = COLORS
 
-    for i in reversed(xrange(3)):
+    for i in reversed(range(3)):
         pl.plot(seps, crb[:,0,i], lw=2.5, label='CRB-'+comps[i], color=colors[i])
 
     for c, (error, label) in enumerate(zip(errors, labels)):
         mu = np.sqrt((error[:,:,0,:]**2)).mean(axis=1)#np.sqrt((error**2).mean(axis=1)).mean(axis=0)
         std = np.std(np.sqrt((error**2)), axis=1)
 
-        for i in reversed(xrange(len(mu[0]))):
+        for i in reversed(range(len(mu[0]))):
             pl.plot(seps, mu[:,i], marker=markers[c], color=colors[i], lw=0, label=label+"-"+comps[i], ms=13)
 
     pl.ylim(1e-3, 8e0)

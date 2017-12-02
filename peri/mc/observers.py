@@ -24,7 +24,7 @@ class Printer(object):
                 msg = self.msg.format(*[i for i in sample])
             else:
                 msg = self.msg.format(sample)
-            print self.count, ':', msg
+            print(self.count, ':', msg)
         self.count += 1
 
     def reset(self):

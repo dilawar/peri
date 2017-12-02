@@ -22,7 +22,7 @@ def zjitter(jitter=0.0, radius=5):
     finalimage = 0*s0.get_model_image()[sl]
     position = 0*s0.obj.pos[0]
 
-    for i in xrange(finalimage.shape[0]):
+    for i in range(finalimage.shape[0]):
         offset = jitter*np.random.randn(3)*np.array([1,0,0])
         s0.obj.pos[0] = np.array(s0.image.shape)/2 + offset
         s0.reset()
@@ -51,10 +51,10 @@ def dorun(SNR=20, njitters=20, samples=10, noise_samples=10, sweeps=20, burn=10)
     crbs, vals, errs, poss = [], [], [], []
 
     for i,t in enumerate(jitters):
-        print '###### jitter', i, t
+        print('###### jitter', i, t)
 
-        for j in xrange(samples):
-            print 'image', j, '|', 
+        for j in range(samples):
+            print('image', j, '|', end=' ') 
             s,im,pos = zjitter(jitter=t)
 
             # typical image
